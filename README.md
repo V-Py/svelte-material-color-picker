@@ -13,7 +13,8 @@
 **[Démo](https://kanban-demo.vercel.app/)**.
 </div>
 
-## Simple color picker made with Svelte and directly inspired from https://github.com/BennyAlex/material-design-inspired-color-picker 
+## Simple color picker made with Svelte
+directly inspired from https://github.com/BennyAlex/material-design-inspired-color-picker 
 <!-- TODO : ILLUTRATION IMG -->
 <slot />
 ## Installation
