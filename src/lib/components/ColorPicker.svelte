@@ -1,15 +1,11 @@
 <script>
     import {createEventDispatcher} from 'svelte'
-    export let color = "#e91e63";
-    export let size = 50;
-
     const dispatch = createEventDispatcher();
-
+    export let color;
+    export let size;
 </script>
 
-<button class="picker" on:click={()=>{dispatch('click',{})}} style:background-color="{color}" style:height="{size}px" style:width="{size}px">
-
-</button>
+<button class="picker" on:click={()=>{dispatch('click',{})}} style:background-color="{color}" style:height="{size}px" style:width="{size}px"></button>
 
 <style>
     .picker{
