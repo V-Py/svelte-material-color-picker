@@ -4,7 +4,9 @@
 
 
 <script>
+    import {onMount} from 'svelte';
     import ColorCircle from '$lib/components/ColorCircle.svelte';
+    import ColorPicker from '$lib/components/ColorPicker.svelte';
     // Parameters
     // colorsMargin : distance between colors
     // colorsPerRow : numbero of colors per row
@@ -40,18 +42,38 @@
     }
 
     let colorsName = Object.keys(palette);
+    let margin = 1;
+    // let size = 30;
+    let size;
+    let selectedColor = palette['red'][500];
+    let bool_show = false;
+    let mode = 'palette'; // button vs palette
+
+    function handleColorChosen(e){
+        console.log('COLOR CHOSEN', e.detail);
+        selectedColor = e.detail.color;
+        bool_show = false;
+    }
+
+    onMount(()=>{
+
+    })
 </script>
+    <div class="colors-container" color={selectedColor} {size}>
+        {#if !bool_show && mode == 'button'}
+            <ColorPicker color={selectedColor} {size} on:click={()=>{bool_show = true}} />
+        {:else}
+            {#each colorsName as name}
+                {@const color = palette[name][500]}
+                <ColorCircle {color} {size} {margin} {name} {selectedColor} on:colorChosen={handleColorChosen} />
+            {:else}
+                Pas de couleurs
+            {/each}
 
-    {#each colorsName as color}
-        <ColorCircle 
-            color={palette[color][500]}
-            size={30}
-            margin={1}
-
-        />
-    {:else}
-    Pas de couleurs
-    {/each}
+        {/if}
+    </div>
 <style>
-
+    .colors-container{
+        display:flex;
+    }
 </style>
