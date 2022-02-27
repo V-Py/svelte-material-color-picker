@@ -10,12 +10,11 @@
 </h4>
 
 <div class="hide-in-docs">
-
-**[Live demo](https://kanban-demo.vercel.app/)**.
-
+**[Démo](https://kanban-demo.vercel.app/)**.
 </div>
 
-**A simple Svelte Color Picker **
+## Simple color picker made with Svelte
+directly inspired from https://github.com/BennyAlex/material-design-inspired-color-picker 
 <!-- TODO : ILLUTRATION IMG -->
 <slot />
 ## Installation
