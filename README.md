@@ -18,7 +18,7 @@
 ## Simple color picker made with Svelte
 directly inspired from https://github.com/BennyAlex/material-design-inspired-color-picker 
 <!-- TODO : ILLUTRATION IMG -->
-<img src="https://raw.githubusercontent.com/V-Py/svelte-material-color-picker/master/static/colorpicker.PNG" alt="Svelte Kanban">
+<img src="https://raw.githubusercontent.com/V-Py/svelte-material-color-picker/master/static/colorpicker.png" alt="Svelte Kanban">
 
 <slot />
 ## Installation
