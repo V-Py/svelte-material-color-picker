@@ -3,14 +3,16 @@
 </h1>
 
 <h4 align="center">
-<a href="https://www.npmjs.com/package/svelte-color-picker"><img src="https://img.shields.io/npm/v/svelte-color-picker.svg"/></a>
+<a href="https://www.npmjs.com/package/svelte-material-color-picker"><img src="https://img.shields.io/npm/v/svelte-material-color-picker.svg"/></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
 <!-- TODO POST IT ON MADE WITH SVELTE -->
 <!-- <a href="https://madewithsvelte.com/p/svelte-tags-input/shield-link"><img src="https://madewithsvelte.com/storage/repo-shields/2151-shield.svg"/></a> -->
 </h4>
 
 <div class="hide-in-docs">
-**[Démo](https://kanban-demo.vercel.app/)**.
+
+**[Live demo](https://kanban-demo.vercel.app/picker)**.
+
 </div>
 
 ## Simple color picker made with Svelte
@@ -20,14 +22,14 @@ directly inspired from https://github.com/BennyAlex/material-design-inspired-col
 ## Installation
 
 ```sh
-npm i svelte-color-picker
+npm i svelte-material-color-picker
 ```
 
 ## Usage
 
 ```svelte
 <script>
-    import Picker from 'svelte-color-picker';
+    import Picker from 'svelte-material-color-picker';
 </script>
 
 
@@ -69,8 +71,8 @@ Full list of props/bindable variables for this component:
 ## Dev Mode
 
 ```sh
-git clone https://github.com/V-Py/svelte-color-picker
-cd svelte-color-picker
+git clone https://github.com/V-Py/svelte-material-color-picker
+cd svelte-material-color-picker
 npm install
 npm run dev
 ```
