@@ -6,9 +6,19 @@
     export let margin;
     export let name;
     export let selectedColor;
+    export let useSpectrumPicker;
+    export let isSpectrumElement = false;
+
+    function handleClickOnCircle(){
+        if(useSpectrumPicker && !isSpectrumElement){
+            dispatch('showSpectrum',{name, color})
+            return;
+        }
+        dispatch('colorChosen',{name, color})
+    }
 </script>
 
-<div class="circle {selectedColor == color ? 'selected' : ''}" style:background-color="{color}" style:height="{size}px" style:width="{size}px" style:margin="{margin}px" on:click={()=>{dispatch('colorChosen',{name, color})}}>
+<div class="circle {selectedColor == color ? 'selected' : ''}" style:background-color="{color}" style:height="{size}px" style:width="{size}px" style:margin="{margin}px" on:click={handleClickOnCircle}>
     <div class="inner-circle {selectedColor == color ? 'selected' : ''}" style:background-color="{color}" style:height="{size/1.4}px" style:width="{size/1.4}px">
     </div>
 </div>

@@ -32,12 +32,15 @@
     export let size                = 50; // colorSize    : size of circle
     export let colorsPerRow        = 6; // colorsPerRow : numbero of colors per row
     export let defaultTint         = 500; // defaultTint  : base tint
-    export let useSpectrumPicker   = false; // useSpectrumPicker
+    export let useSpectrumPicker   = true; // useSpectrumPicker
     export let mode                = 'palette'; // button vs palette
     export let selectedColor       = palette['red'][defaultTint]; // value : color selected (#000000)
     let colorsName          = Object.keys(palette);
+    let colorSpectrum = [];
     let bool_show           = false; 
     let widthPicker         = 0;
+    let showSpectrum        = false;
+    let selectedColorName = 'red';
 
     function handleColorChosen(e){
         const oldSelected = selectedColor;
@@ -46,9 +49,14 @@
         dispatch('colorChanged', {old:oldSelected, new:selectedColor});
     }
 
+    function handleSpectrum(e){
+        selectedColorName = e.detail.name;
+        colorSpectrum = Object.keys(palette[selectedColorName]);
+        showSpectrum = true;
+    }
+
     onMount(()=>{
         widthPicker = colorsPerRow*(margin*2 + size)+1;
-        console.log('widhtPicker', widthPicker);
     })
 
 </script>
@@ -58,12 +66,24 @@
         {#if !bool_show && mode == 'button'}
             <ColorPicker color={selectedColor} {size} on:click={()=>{bool_show = true}} />
         {:else}
-            {#each colorsName as name}
-                {@const color = palette[name][defaultTint]}
-                <ColorCircle {color} {size} {margin} {name} {selectedColor} on:colorChosen={handleColorChosen} />
+            {#if useSpectrumPicker && showSpectrum}
+                {#each colorSpectrum as tint}
+                    {@const color = palette[selectedColorName][tint]}
+                    <ColorCircle {color} {size} {margin} name={selectedColorName} {selectedColor} {useSpectrumPicker} isSpectrumElement={true} on:colorChosen={handleColorChosen} />
+                {:else}
+                    Pas de spectre de couleur
+                {/each}
+                <button class="return" on:click={() => {showSpectrum = false}}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"/></svg>
+                </button>
             {:else}
-                Pas de couleurs
-            {/each}
+                {#each colorsName as name}
+                    {@const color = palette[name][defaultTint]}
+                    <ColorCircle {color} {size} {margin} {name} {selectedColor} {useSpectrumPicker} on:colorChosen={handleColorChosen} on:showSpectrum={handleSpectrum}/>
+                {:else}
+                    Pas de couleurs
+                {/each}
+            {/if}
 
         {/if}
     </div>
@@ -78,5 +98,19 @@
         display:flex;
         flex-wrap:wrap;
         position:relative;
+    }
+
+    .return{
+        background:transparent;
+        border:transparent;
+        width:50px;
+        height:50px;
+        margin:1px;
+        border-radius:50px;
+    }
+
+    .return:hover{
+        cursor:pointer;
+        background:rgba(0,0,0,0.1);
     }
 </style>
