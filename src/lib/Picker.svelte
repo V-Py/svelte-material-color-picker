@@ -42,6 +42,12 @@
     let showSpectrum        = false;
     let selectedColorName = 'red';
 
+    $ : updateWidthPicker(colorsPerRow, margin, size);
+
+    function updateWidthPicker(p, m, s){
+        widthPicker = colorsPerRow*(margin*2 + size)+1;
+    }
+
     function handleColorChosen(e){
         const oldSelected = selectedColor;
         selectedColor = e.detail.color;
@@ -54,11 +60,6 @@
         colorSpectrum = Object.keys(palette[selectedColorName]);
         showSpectrum = true;
     }
-
-    onMount(()=>{
-        widthPicker = colorsPerRow*(margin*2 + size)+1;
-    })
-
 </script>
 
 <div class="main-container">
